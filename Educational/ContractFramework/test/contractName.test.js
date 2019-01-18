@@ -11,7 +11,7 @@ const {
     assertRevert 
 } = require('./helpers/assertRevert');
 
-var AccessAccount = artifacts.require("./Content.sol");
+var ContractName = artifacts.require("./ContractName.sol");
 
 contract("contractName tests", function(accounts) {
     const DeployAddress = accounts[0];
@@ -20,8 +20,15 @@ contract("contractName tests", function(accounts) {
     const acc3 = accounts[3];
     const acc4 = accounts[4];
 
-    beforeEach("", async () => {
+    let ContractInstance;
 
+    beforeEach("", async () => {
+        ContractInstance = await ContractName.new("Constructor argument", {from: DeployAddress});
+
+        let contractName = await ContractInstance.name();
+        assert.equal(contractName, "Constructor argument", "Name is correct");
+        assert.notEqual(contractName, "Not constructor argument", "Name is correct");
+        await assertRevert(ContractInstance.accessRestricted("Fake new name", {from: acc1}) , EVMRevert);
     });
 
     describe("Basic functionality", () => {

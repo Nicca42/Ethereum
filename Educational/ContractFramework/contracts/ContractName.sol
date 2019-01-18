@@ -1,10 +1,26 @@
 pragma solidity ^0.5.0;
 
-contract ContractName {
-    address private Owner;
+import "../node_modules/openzeppelin-solidity/contracts/ownership/Ownable.sol";
 
-    constructor() public {
+contract ContractName is Ownable {
+    address private Owner;
+    string public name;
+
+    modifier onlyOnwer() {
+        require(Owner==msg.sender, "This is a restricted function");
+        _;
+    }
+
+    constructor(string memory _name) public {
         Owner = msg.sender;
+        name = _name;
+    }
+
+    function accessRestricted(string memory _newName) 
+        public
+        onlyOnwer()
+    {
+        name = _newName;
     }
 
     /**

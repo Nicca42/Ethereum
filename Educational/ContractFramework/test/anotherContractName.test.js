@@ -11,7 +11,7 @@ const {
     assertRevert 
 } = require('./helpers/assertRevert');
 
-var AccessAccount = artifacts.require("./Content.sol");
+var AnotherContractName = artifacts.require("./AnotherContractName.sol");
 
 contract("contractName tests", function(accounts) {
     const DeployAddress = accounts[0];
@@ -20,8 +20,10 @@ contract("contractName tests", function(accounts) {
     const acc3 = accounts[3];
     const acc4 = accounts[4];
 
-    beforeEach("", async () => {
+    let AnotherContractInstance;
 
+    beforeEach("", async () => {
+        AnotherContractInstance = await AnotherContractName.new({from: DeployAddress});
     });
 
     describe("Basic functionality", () => {
