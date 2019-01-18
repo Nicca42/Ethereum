@@ -6,6 +6,8 @@
 
 </div>
 
+----
+
 | Topic Link | Description |
 |-----------:|:------------|
 | [A Solidity Contract boilerplate](Educational\ContractFramework) | A boilerplate for Solidity contracts. Truffle and npm installed and mock test set up. |
