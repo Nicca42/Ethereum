@@ -11,7 +11,7 @@
 
 #### [Xctly](Projects\Xctly) 
 
-A subscription based media platform where creators are funded directly through their contents popularity. Getting rid of the thing that will be the literal death of web2, adds (oh and the whole destroy-souls-for-money mentality)
+A subscription based media platform where creators are paid directly through their content, and users can be paid for moderating content. 
 
 ---
 
