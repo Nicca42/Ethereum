@@ -16,7 +16,7 @@ Versions:
 
 | # | Description |
 |--:|:------------|
-| 0.01 | ETH Cape Town prep |  
+| 0.01 | [ETH Cape Town prep](v0.01) |  
 
 This is a basic description of the roles of each user type, for an understanding of what this project is trying to achieve. These definitions will probably vary from version to version.
 
