@@ -63,13 +63,13 @@ Much like Solidity there are tags used to indicate if the function is public/pri
 Function structure:
 ```
 @public
-@payable
+@payable 
 def functionName():
     <functionality>
 ```
 
 Default functions
-Vyper can have a default function, which is executed on a call to the contract that does not match any functions. The 
+Vyper can have a default function, which is executed on a call to the contract that does not match any functions. 
 
 
 ###Events
