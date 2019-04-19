@@ -32,51 +32,49 @@ Declaring a vyper contract:
 ### Variable data types:
 Declaring a variable:
 `variable name: variable data type`
-`storedNumber: uint128`
-* Type: `keyword`
-* Boolean: `bool`
-* Signed int: `int128` (positive and negative numbers)
-* Unsigned int: `uint256` (only positive)
-* decimals: `decimal` (is signed, 10 decimal places)
-* Ethereum address: `address`
-    * Members listed below are used by calling them on an address, i.e `address.balance`.
-    * Balance: `balance` (returned in `wei_value`)
-    * Size of address: `codesize` (returns `int128`) 
-    * If its a contract: `is_contract`
-* time stamps: `timestamp` (`uint256` measured in seconds)
-* time since/change: `timedelta` (`uint256` in seconds)
-    * **NOTE** `timedelta`s can be added together, and can be added to `timestamps`, but two `timestamps` cannot be added.
-* Wei: `wei_value` (`uint256`)
-* You can also make custom units 
-    * `units: {
-        cm: "centimeter"
-    }`
-    And using it `a: int128(cm)`
-* Byte 32 array: `bytes32`
-    * Operators that use `bytes32`
-    * `sha3` has: `sha3( <bytes32> )`
-    * concatenation: `concat( <bytes32>, ... )`
-    * slicing: `slice( <bytes32, start=_start, len=_len )` returns a slice of the specified length (`_len`) starting at `_start`
-* Fixed-sized byte array: `bytes[maxLength]` i.e `bytes[100]`, the size is fixed and cannot be unspecified
-* Fixed-size strings: `string[maxLength]` i.e `string[100]`
-    * Operators that use `string`s
-    * length: `len( <string> )`
-    * `sha3` hash: `sha3( <string> )` 
-    * concatenation: `concat( <string>, ... )`
-    * slicing: `slice( <string>, start=_start, len=_len)` (same as `bytes32` slicing)
-* Fixed-sized lists: `_name: VariableType[_size]` (multidimensional lists are possible i.e `_allowances: uint256[100][100]`)
-* structs: 
+i.e `storedNumber: uint128`
+
+| Variable type | Description | Members |
+|:-------------:|:-----------:|:-------:|
+| `bool` | Boolean | |
+| `int128` | Signed int (positive and negative numbers) | |
+| `uint256` | Unsigned int (only positive) | | 
+| `decimal` | decimals (is signed, 10 decimal places) | |
+| `address` | Ethereum address | `balance`: Balance (returned in `wei_value`) <br> `codesize`: Size of address (returns `int128`) <br> `is_contract`: If the address is a contract |
+| `timestamp` | time stamps (`uint256` measured in seconds) | | 
+| `timedelta` | time since/change (`uint256` in seconds) | **NOTE** `timedelta`s can be added together, and can be added to `timestamps`, but two `timestamps` cannot be added together. | 
+| `wei_value` | Wei (`uint256`) | | 
+| `bytes32` | Byte 32 array | `sha3` hash: `sha3( <bytes32> )` <br> concatenation: `concat( <bytes32>, ... )` <br> slicing: `slice( <bytes32, start=_start, len=_len )` returns a slice of the specified length (`_len`) starting at `_start` |
+| `bytes[maxLength]` | Fixed-sized byte array i.e `bytes[100]`, the size is fixed and cannot be unspecified | | 
+| `string[maxLength]` | Fixed-size strings:  i.e `string[100]` | `len( <string> )` length <br> `sha3` hash: `sha3( <string> )` <br> concatenation: `concat( <string>, ... )` <br> slicing: `slice( <string>, start=_start, len=_len)` (same as `bytes32` slicing) |
+| `_name: VariableType[_size]` | Fixed-sized lists i.e `_balances: uint256[100]` (multidimensional lists are supported i.e `_allowances: uint256[100][100]`) | |
+| `struct StructName:` | `struct StructName: `<br>` value1: int128 `<br>` value2: string[100]`<br>`#Constructing:`<br>`exampleStruct = MyStruct({value1: 123, value2: "string"})`<br>`#Getting data out`<br>`exampleStruct.value1 = 1` | **NOTE** as this is a pythonic language, tabbing is important. The variables within the struct should be tabbed | 
+| Custom Units | `units: {`<br>`cm: "centimeter"`<br>`}`<br> To use it: `a: int128(cm)` | |
+
+###Declaring a function
+Much like Solidity there are tags used to indicate if the function is public/private or payable. These tags are called decorators, and there are 5.
+
+1. `@public`: Marks the function as public. This function can only be called by an external contract. 
+2. `@private`: Marks the function as private. This function can only be called within this contract.
+3. `@constant` This function does not alter contract state.
+4. `@payable` This function can receive ether. 
+5. `@nonrentant(<unique_key>)`: This function can only called once, internally or externally. Used to prevent reentrancy attacks.
+
+Function structure:
 ```
-struct StructName:
-    value1: int128
-    value2: string[100]
-#Constructing:
-exampleStruct = MyStruct({value1: 123, value2: "string"})
-#Getting data out
-exampleStruct.value1 = 1
+@public
+@payable
+def functionName():
+    <functionality>
 ```
-* 
-Declaring a function
+
+Default functions
+Vyper can have a default function, which is executed on a call to the contract that does not match any functions. The 
+
+
+###Events
+An event is declared like so:
+`Transfer: event({})
 
 # Resources
 https://vyper.readthedocs.io/en/latest/types.html#types
