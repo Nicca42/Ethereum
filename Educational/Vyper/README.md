@@ -33,6 +33,7 @@ Declaring a vyper contract:
 Declaring a variable:
 `variable name: variable data type`
 i.e `storedNumber: uint128`
+In order to reference a variable within the contract, you must use the keyword `self`, i.e `self._variableName`.
 
 | Variable type | Description | Members |
 |:-------------:|:-----------:|:-------:|
@@ -51,7 +52,7 @@ i.e `storedNumber: uint128`
 | `struct StructName:` | `struct StructName: `<br>` value1: int128 `<br>` value2: string[100]`<br>`#Constructing:`<br>`exampleStruct = MyStruct({value1: 123, value2: "string"})`<br>`#Getting data out`<br>`exampleStruct.value1 = 1` | **NOTE** as this is a pythonic language, tabbing is important. The variables within the struct should be tabbed | 
 | Custom Units | `units: {`<br>`cm: "centimeter"`<br>`}`<br> To use it: `a: int128(cm)` | |
 
-###Declaring a function
+### Declaring a function
 Much like Solidity there are tags used to indicate if the function is public/private or payable. These tags are called decorators, and there are 5.
 
 1. `@public`: Marks the function as public. This function can only be called by an external contract. 
@@ -71,10 +72,38 @@ def functionName():
 Default functions
 Vyper can have a default function, which is executed on a call to the contract that does not match any functions. 
 
-
-###Events
+### Events
 An event is declared like so:
-`Transfer: event({})
+`Transfer: event({amount: uint128, sender: indexed(address), receiver: indexed(address)})`
+To emit an event, you log it i.e `log.Payment(msg.value, msg.sender, _to)`
+
+### Comments/documentation
+Documents are denoted with 3 double quotes starting and ending the comments `"""`. The documentation has tags, these tags are:
+`"""`
+`@author`: The author of the contract/function
+`@notice`: Non technical description of function
+`@dev`: Technical description of function
+`@param`: The parameters of the function
+`@return`: What the function returns
+`"""`
+
+### Importing/implementing 
+To import an interface or contract:
+`import an_interface as TheInterface`
+To implement the imported contract
+`implements: TheInterface`
+Vyper has a built-in format option for creating an interface
+`vyper -f interface examples/voting/ballot.vy`<br>
+```
+contract Ballot:
+    def delegated(addr: address) -> bool: constant
+    def directlyVoted(addr: address) -> bool: constant
+    def giveRightToVote(voter: address): modifying
+    def forwardWeight(delegate_with_weight_to_forward: address): modifying
+```
+There are also built in interfaces that you can get from `vyper.interfaces`.
+
+
 
 # Resources
 https://vyper.readthedocs.io/en/latest/types.html#types
