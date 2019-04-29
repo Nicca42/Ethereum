@@ -10,5 +10,6 @@
 
 | Topic Link | Description |
 |-----------:|:------------|
-| [A Solidity Contract boilerplate](Educational\ContractFramework) | A boilerplate for Solidity contracts. Truffle and npm installed and mock test set up. |
+| [`SimpleBank`](Educational\ContractFramework) | A very simple boilerplate for a dApp. Based off the truffle pet-shop box, `SimpleBank` allows for interaction with contracts on tests nets or locally and is perfect for testing tools. |
+| [`SimpleBankWithENS`](Educational\ContractFramework) | Coming next! |
 | [Encoded function calls](Educational\Encoding) | How to encode a function in Solidity and JavaScript as well as how to execute your newly encoded function in Solidity. |
