@@ -9,8 +9,6 @@
 
 ---- 
 
-I made this repo to collect all the experiments and learning projects I have done within the Ethereum ecosystem, mostly so I don't misplace them. 
-
 #### Key
 
 <div align="center">
@@ -32,10 +30,10 @@ I made this repo to collect all the experiments and learning projects I have don
 
 | Type | Subtopic Link | Version | Description | Progress |
 |------:|:-------------:|:-------:|:-----------:|:---------|
-| [Educational](Educational) `SimpleBank` | [dApp template](Educational\SimpleBank) `SimpleBank` | `0.5.0` | A basic dApp for Solidity contracts, with npm and etherlime (with test helpers). Has example contracts and tests, as well as simple front end. | WIP |
+| [Educational](Educational) `SimpleBank` | [dApp template](Educational\SimpleBank) `SimpleBank` | `0.5.0` | A basic dApp. The contract is an ERC20 token that will mint free tokens. Has a simple front end to display balances and allow a user to interact with the contracts. | WIP |
 | [Educational](Educational) `SimpleBank` | [ENS]() `SimpleBankWithENS` | `0.5.0` | `SimpleBankWithENS` is the `SimpleBank` project with ENS integrated, to allow for a quick and easy to follow example of ENS implementation. | Coming Soon! |
-| [Educational](Educational) | [Encoding Functions](Educational\Encoding) | `0.5.0` | Encoding Solidity functions in Solidity and JavaScript, as well as executing your newly encoded functions in Solidity. | Coming Soon! |
-| [Educational](Educational) | [Vyper](Educational\Vyper) | | A cheat sheet for Vyper contracts - variable names, contract structure, limitations and nuances. | Done, BCBR |
+| [Educational](Educational) | [Encoding Functions](Educational\Encoding) | `0.5.0` | Encoding Solidity functions in Solidity and JavaScript, as well as executing your newly encoded functions in Solidity. | Done, BCBR |
+| [Educational](Educational) | [Vyper](Educational\Vyper) | | A cheat sheet for Vyper contracts - variable names, contract structure, limitations and nuances. | WIP |
 | [Projects](Projects) | [Xctly](Projects\Xctly) | `0.5.0` | A subscription based social media platform where creators get paid for their content by the people consuming it. | Coming Soon! |
 
 
