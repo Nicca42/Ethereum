@@ -103,8 +103,6 @@ contract Ballot:
 ```
 There are also built in interfaces that you can get from `vyper.interfaces`.
 
-
-
 # Resources
 https://vyper.readthedocs.io/en/latest/types.html#types
 https://vyper.readthedocs.io/en/latest/structure-of-a-contract.html
