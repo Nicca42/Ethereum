@@ -1,6 +1,11 @@
+//Here we create an instance of ENS
+var ENS = require('ethereum-ens');
+
 App = {
   web3Provider: null,
   contracts: {},
+  //Here we are making a global ens variable
+  ens,
 
   init: async function() {
     return await App.initWeb3();
@@ -9,6 +14,8 @@ App = {
   initWeb3: async function() {
     if (window.ethereum) {
       App.web3Provider = window.ethereum;
+      //Here we inicialize our ens
+      App.ens = new ENS(App.web3Provider);
       try {
         await window.ethereum.enable();
       } catch (error) {
