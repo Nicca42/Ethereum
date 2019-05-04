@@ -6,7 +6,7 @@
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "react-scripts": "3.0.0",
-    "truffle": "^5.0.14",
+    "truffle": "^5.0.15",
     "web3": "^1.0.0-beta.34"
   },
   "scripts": {

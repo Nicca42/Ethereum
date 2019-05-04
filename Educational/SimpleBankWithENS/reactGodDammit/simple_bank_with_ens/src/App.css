@@ -19,6 +19,11 @@
   color: white;
 }
 
+.actions {
+  height: 5vmin;
+  width: 40vmin;
+}
+
 .App-link {
   color: #61dafb;
 }

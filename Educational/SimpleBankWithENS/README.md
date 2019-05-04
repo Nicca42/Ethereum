@@ -98,3 +98,8 @@ Update the address of a name
     * **Throws:** Will throw if you are not the owner of the root domain. 
     * **Example:** `ens.resolver(name).setAddr(newAddress, {from: owner});`
         * This is also how you update other associated data types. E.g: `ens.resolver(name).setText('the new', 'text', {from: owner});`
+
+# Resources used to pull this all together:
+
+`create-react-app` -
+[This guide](https://medium.com/coinmonks/building-ethereum-dapps-with-reactjs-truffle-contract-web3-a-ui-for-tokenzendr-a-smart-bf345478b116) - A guide to making the standard `react-app` web3 enabled. 

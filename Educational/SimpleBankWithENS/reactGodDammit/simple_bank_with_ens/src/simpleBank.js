@@ -5,4 +5,4 @@ const address = '0x0';
 
 const abi = simpleBank.abi;
 
-console.log(abi)
+console.log(abi);
