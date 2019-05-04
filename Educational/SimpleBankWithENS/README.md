@@ -16,14 +16,14 @@ For a step by step guide of getting a name, check [this for testnets]() and [thi
 
 The following is a table of available libraries with some degree of ENS functionality integrated. 
 
-| Library | Name Resolution | Transferring ownership | Creating subdomains | Updating address | Updating other records | Configuring reverse resolution | 
+| Library (linked to npm) | Name Resolution (forward + reverse) | Transferring ownership | Creating subdomains | Updating address | Updating other records | Configuring reverse resolution (`.claim()`) | 
 |:-------:|:---------------:|:----------------------:|:-------------------:|:---------:|:---------------------:|:------------------------------:|
-| `ethereum-ens` | Yes | Yes | Yes | Yes | Yes | X |
-| `web3.js` | X | X | X | Yes | Yes | X |
-| `ethjs-ens` |  |  |  |  |  |  |
-| `ethers.js` | Yes | X | X | X | X | X |
-| `web3j` | Yes | X | X| X | X | X |
-| `web3.py` | Yes | Yes | Yes | Yes | X | Yes |
+| [`ethereum-ens`](https://www.npmjs.com/package/ethereum-ens) | Yes | Yes | Yes | Yes | Yes | X |
+| [`web3.js` & `web3j`](https://www.npmjs.com/package/web3) | Yes | Yes | Yes | Yes | Yes | X |
+| [`ethjs-ens`](https://www.npmjs.com/package/ethjs-ens) | Yes | X | X |  | X | X |
+| [`ethers.js`](https://www.npmjs.com/package/ethers) | Yes ~ | X | X | X | X | X |
+| [`web3j`](https://web3j.readthedocs.io/en/stable/ens.html) | Yes | X | X| X | X | X |
+| [`web3.py`](https://www.npmjs.com/package/web3) | Yes | Yes | Yes | Yes | X | Yes |
 
 ## Setting up ENS
 
