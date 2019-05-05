@@ -1,5 +1,4 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
 import web3 from 'web3';
 
@@ -18,13 +17,20 @@ function App() {
               console.error("User denied account access")
             }
           } else if (window.web3) {
-            App.web3Provider = window.web3.currentProvider;
+            state.web3Provider = window.web3.currentProvider;
           }
           else {
-            App.web3Provider = new Web3.providers.HttpProvider('http://localhost:7545');
+            state.web3Provider = new web3.providers.HttpProvider('http://localhost:7545');
           }
-          web3 = new Web3(App.web3Provider);
+          web3 = new web3(state.web3Provider);
           return App.initContract(window.web3.eth.accounts[0]);
+    }
+
+    let initContract = (account) => {
+        // var SimpleBankArtifact = data;
+        // App.contracts.SimpleBank = TruffleContract(SimpleBankArtifact);
+        // App.contracts.SimpleBank.setProvider(App.web3Provider);
+        // return App.getBalance(account);
     }
 
   return (

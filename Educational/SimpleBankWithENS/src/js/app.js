@@ -1,10 +1,7 @@
-// const ENS = require('ethereum-ens');
-
 App = {
   web3Provider: null,
   contracts: {},
-  // ens,
-  // ENS,
+  // ENS: require('ethereum-ens'),
   //Above we are making a global ens variable
 
   init: async function() {
@@ -12,11 +9,12 @@ App = {
   },
 
   initWeb3: async function() {
+    // const ENS: require('ethereum-ens');
     if (window.ethereum) {
       App.web3Provider = window.ethereum;
-      // App.ENS = require('ethereum-ens');
+      import ens from '../../node_modules/ethereum-ens'
       //Here we inicialize our ens. This will only run once. Its an if else. 
-      // App.ens = new ENS(App.web3Provider);
+      App.ens = new ENS(App.web3Provider);
       try {
         await window.ethereum.enable();
       } catch (error) {
@@ -25,12 +23,14 @@ App = {
     } else if (window.web3) {
       App.web3Provider = window.web3.currentProvider;
       //Here we inicialize our ens
-      // App.ens = new ENS(App.web3Provider);
+      // var ENS = require('ethereum-ens');
+
+      App.ens = new ENS(App.web3Providers.HttpProvider());
     }
     else {
       App.web3Provider = new Web3.providers.HttpProvider('http://localhost:7545');
       //Here we inicialize our ens
-      // App.ens = new ENS(App.web3Provider);
+      App.ens = new ENS(App.web3Provider);
     }
     web3 = new Web3(App.web3Provider);
     return App.initContract(window.web3.eth.accounts[0]);
