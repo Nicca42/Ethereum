@@ -12,9 +12,9 @@ App = {
     // const ENS: require('ethereum-ens');
     if (window.ethereum) {
       App.web3Provider = window.ethereum;
-      import ens from '../../node_modules/ethereum-ens'
-      //Here we inicialize our ens. This will only run once. Its an if else. 
-      App.ens = new ENS(App.web3Provider);
+      // import ens from '../../node_modules/ethereum-ens'
+      // Here we inicialize our ens. This will only run once. Its an if else. 
+      // App.ens = new ENS(App.web3Provider);
       try {
         await window.ethereum.enable();
       } catch (error) {
@@ -25,7 +25,7 @@ App = {
       //Here we inicialize our ens
       // var ENS = require('ethereum-ens');
 
-      App.ens = new ENS(App.web3Providers.HttpProvider());
+      // App.ens = new ENS(App.web3Providers.HttpProvider());
     }
     else {
       App.web3Provider = new Web3.providers.HttpProvider('http://localhost:7545');
@@ -124,8 +124,12 @@ App = {
 
 };
 
+ens = require('ethereum-ens');
 $(function() {
   $(window).load(function() {
+    console.log("init")
+      
+    
     App.init();
   });
 });
