@@ -20,7 +20,7 @@ The following is a table of available libraries with some degree of ENS function
 |:-------:|:---------------:|:----------------------:|:-------------------:|:---------:|:---------------------:|:------------------------------:|
 | [`ethereum-ens`](https://www.npmjs.com/package/ethereum-ens) | Yes | Yes | Yes | Yes | Yes | X |
 | [`web3.js` & `web3j`](https://www.npmjs.com/package/web3) | Yes | Yes | Yes | Yes | Yes | X |
-| [`ethjs-ens`](https://www.npmjs.com/package/ethjs-ens) | Yes | X | X |  | X | X |
+| [`ethjs-ens`](https://www.npmjs.com/package/ethjs-ens) | Yes | X | X | X | X | X |
 | [`ethers.js`](https://www.npmjs.com/package/ethers) | Yes ~ | X | X | X | X | X |
 | [`web3j`](https://web3j.readthedocs.io/en/stable/ens.html) | Yes | X | X| X | X | X |
 | [`web3.py`](https://www.npmjs.com/package/web3) | Yes | Yes | Yes | Yes | X | Yes |
