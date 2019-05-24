@@ -1,6 +1,20 @@
 # Vyper Cheatsheet
 
-## Vyper is…
+### Index:
+##### [What is Vyper?](#what-is-vyper)
+##### [Contract Set up](#contract-set-up)
+* [Variable Data Types](#variable-data-types)
+* [Declaring a function](#declaring-a-function)
+   * [Constructor](#constructor)
+   * [Default functions](#default-functions)
+* [Events](#events)
+* [Comments & documentation](#comments-and-documentation)
+* [External Contract Interactions](#external-contract-interactions)
+   * [Interfaces](#interfaces)
+   * [Importing and implementing external contracts](#importing-and-implementing-external-contracts)
+##### [Resources](#resources)
+
+## What is Vyper
 A pythonic programming language that targets the EVM.
 Vyper was created with specific goals and principals in mind that heavily affect functionality. These are:
 **Auditability** - NB This is Vyper's biggest focus - human readability. This means making it as hard as possible to write misleading code. 
@@ -26,26 +40,8 @@ Vyper was created with specific goals and principals in mind that heavily affect
 * Infinite-length loops
 * Binary fixed point (decimal are used instead)
 
-## Contract Cheatsheet
-
-### Index:
-[Contract Set up](#contract-set-up)
-[Variable Data Types](#variable-data-types)
-[Declaring a function](#declaring-a-function)
-* [Constructor](#constructor)
-* [Default functions](#default-functions)
-
-[Events](#events)
-[Comments & documentation](#comments-and-documentation)
-[External Contract Interactions](#external-contract-interactions)
-* [Importing and creating interfaces]()
-* [Importing and implementing external contracts]()
-* [External function calls]()
-
-[Resources](#resources)
-
-### Contract Set Up
-The file extension type is `.v.py`
+## Contract Set Up
+The file extension type is `.vy`
 
 Whatever version of vyper you have installed is the version of vyper the compiler will use. You do not get to specify the version explicitly. 
 
@@ -80,6 +76,7 @@ In order to reference a variable within the contract, you must use the keyword `
 
 | Variable type | Description | Members |
 |:-------------:|:-----------:|:-------:|
+| `self` | The contract | `balance` The balance of the contract <br> To reference any variable within the contract, (internal or external) the `self` keyword must be used i.e `self.isLocked` |
 | `bool` | Boolean | ~ |
 | `int128` | Signed int (positive and negative numbers) | ~ |
 | `uint256` | Unsigned int (only positive) | ~ | 
@@ -165,11 +162,11 @@ You can make these comments above the functions/events using the normal `#` comm
 ### External Contract Interactions
 Vyper allows for interactions with external contracts, such as interfaces, importing other contracts and calling functions on external contracts. 
 
-##### Importing and creating interfaces
+##### Interfaces
 Vyper has a built-in format option for creating an interface
 
 ```
-# Use this command to extract the contracts output, which can be copy pasted into your contract to use
+# Use this command to extract the contracts output, which can be copy pasted into your contract to interact with the external contract. 
 vyper -f external_interface examples/voting/ballot.vy
 
 # External contracts output 
@@ -180,7 +177,9 @@ contract Ballot:
     def forwardWeight(delegate_with_weight_to_forward: address): modifying
 ```
 
-There are also built in interfaces that you can get from `vyper.interfaces`, such as `ERC20` and `ERC721`.
+##### Importing and implementing external contracts
+
+There are built in interfaces that you can get from `vyper.interfaces`, such as `ERC20` and `ERC721`.
 ```
 # Importing from the available vyper interfaces
 from vyper.interfaces import ERC20
@@ -189,13 +188,21 @@ from vyper.interfaces import ERC20
 implements: ERC20
 ```
 
-##### Importing and implementing external contracts
+Implementing the contract means you will have to implement all abstract functions of that interface. 
 
+To make an instance of this contract within your contract:
+```
+# The interface of the contract cast to an address, followed by .function call ()
+ContractInterface(address).function()
+# i.e
+Ballot(addressOfBallotContract).giveRightToVote(_address)
 
-##### External function calls
+# To make a variable to store a contract instance at:
+some_contract: Ballot
 
-
-
+# Inside a function or the constructor
+self.some_contract = Ballot(addressOfContract)
+```
 
 # Resources
 [Vyper data types - Vyper read the docs](https://vyper.readthedocs.io/en/latest/types.html#types)
@@ -203,13 +210,5 @@ implements: ERC20
 [Getting started with Vyper - Medium article](https://medium.com/@rossbulat/get-started-with-vyper-the-pythonic-ethereum-smart-contract-language-e5e58969087e)
 [Learn Vyper from your browser - Medium article](https://medium.com/coinmonks/learn-the-ethereum-language-vyper-from-within-your-browser-b084ec51302)
 [Vyper by example - Vyper read the docs](https://vyper.readthedocs.io/en/latest/vyper-by-example.html)
-[]()
-[]()
-[]()
-[]()
-[]()
-[]()
-[]()
-
-https://www.google.com/search?q=vyper+docs&oq=vyper+docs&aqs=chrome..69i57j0.2088j0j7&sourceid=chrome&ie=UTF-8
-https://www.google.com/search?q=vyper+ethereum&oq=vyper+ethereum&aqs=chrome..69i57j0l4.6262j0j7&sourceid=chrome&ie=UTF-8
+[Vyper documentation - Vitalik Buterin](https://buildmedia.readthedocs.org/media/pdf/vyper/latest/vyper.pdf)
+[Vyper - github](https://github.com/ethereum/vyper)
