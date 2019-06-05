@@ -43,20 +43,18 @@ Vyper was created with specific goals and principals in mind that heavily affect
 ## Contract Set Up
 The file extension type is `.vy`
 
-Whatever version of vyper you have installed is the version of vyper the compiler will use. You do not get to specify the version explicitly. 
+Whatever version of vyper you have installed is the version of vyper the compiler will use. You do not need to specify the version explicitly. 
 
-As Vyper is pythonic, the tabbing of code is vital. Please note, that the code inside a contract does not need to be one tab in. I.e:
+As Vyper is pythonic, the tabbing of code is vital. I.e:
 ```
-# Declaring the contract 
-contract ContractName:
-
 # The code is against the margin, and is not a tab in.
 Transfer: event({_from: indexed(address), _to: indexed(address), _tokenId: indexed(uint256)})
 
 # The event does not need to be a tab in, like below.
     Transfer: event({_from: indexed(address), _to: indexed(address), _tokenId: indexed(uint256)})
 
-# The code within this contract is against the margin, the code withing each function is then tabbed
+# The code within this contract is against the margin, 
+# the code withing each function is then tabbed
 @public
 @constant
 def aFuction(_tokenId: uint256) -> bool:
@@ -64,15 +62,26 @@ def aFuction(_tokenId: uint256) -> bool:
 ```
 
 ### Variable Data Types
-Declaring a variable:
+Variables are by default private, and need to be explicitly marked public if you wish them to be viewable outside the contract. Making a variable automatically creates a getter for the function. 
+
 ```
+# Declaring a private variable:
 # variableName: <variable data type> i.e: 
-storedNumber: uint128
+storedNumber: uint256
+
+# Declaring a public variable 
+# variableName: public(<variable data type>) i.e:
+storedPublicNumber: public(uint256)
+
+# Public getter of the function:
+contract.storedPublicNumber()
 ```
 
 In order to reference a variable of the contracts, the keyword `self` must be used. I.e
 
-In order to reference a variable within the contract, you must use the keyword `self`, i.e `self._variableName`.
+In order to reference a variable within the contract, you must use the keyword `self`, i.e `self._variableName`. 
+
+Note that when using `msg.sender`, the function being called externally with have the address of the user, but if a function is called from within that function, the `msg.sender` will then be the contract. 
 
 | Variable type | Description | Members |
 |:-------------:|:-----------:|:-------:|
@@ -99,7 +108,7 @@ Much like Solidity there are decorator tags used to indicate if the function is 
 2. `@private`: Marks the function as private. This function can only be called within this contract.
 3. `@constant` This function does not alter contract state. The same as a `view` function in Solidity.
 4. `@payable` This function can receive ether. 
-5. `@nonrentant(<unique_key>)`: This function can only called once, internally or externally. Used to prevent reentrancy attacks.
+5. `@nonrentant(<unique_key>)`: This function can only called once, internally or externally. Used to prevent reentrancy attacks. More information needed. 
 
 Function structure:
 ```
@@ -108,6 +117,13 @@ Function structure:
 @payable 
 def functionName():
     <functionality>
+
+# A function with a return type
+@public
+@payable
+def functionReturn() -> bool:
+    <functionality> 
+    return True/False
 ```
 
 ##### Constructor
@@ -133,7 +149,7 @@ def __default__():
 ```
 
 ### Events
-An event is declared like so:
+An event is declared like below. `indexed` events are the same as `indexed` events in solidity, and are searchable. 
 ```
 Transfer: event({amount: uint128, sender: indexed(address), receiver: indexed(address)})
 ```
@@ -152,6 +168,7 @@ Documents are denoted with 3 double quotes starting and ending the comments `"""
 @param: The parameters of the function
 @return: What the function returns
 """
+def function(...
 ```
 You can make these comments above the functions/events using the normal `#` comments, but they will then not be [NatSpec Metadata](https://github.com/ethereum/wiki/wiki/Contract-Metadata-Docs-(NatSpec,-ABI)) compatible. 
 
@@ -175,6 +192,12 @@ contract Ballot:
     def directlyVoted(addr: address) -> bool: constant
     def giveRightToVote(voter: address): modifying
     def forwardWeight(delegate_with_weight_to_forward: address): modifying
+
+# To then use this contract you would make a contract variable of it:
+ballotContract: Ballot
+
+# To then use this variable:
+ballotContract(ballotContractAddress).delegated(...
 ```
 
 ##### Importing and implementing external contracts
