@@ -1,0 +1,21 @@
+{
+  "name": "soliditycheatsheets",
+  "version": "0.6.6",
+  "description": "Cheat Sheets for Solidity versions",
+  "main": "index.js",
+  "private": false,
+  "devDependencies": {
+    "solc": "0.6.6",
+    "etherlime": "2.3.3",
+    "etherlime-lib": "1.2.3",
+    "bignumber.js": "9.0.0",
+    "ethers": "4.0.47"
+  },
+  "scripts": {
+    "build": "etherlime compile",
+    "test": "etherlime test --output=none --timeout 100000 --gas-report=true --runs=999",
+    "start": "etherlime ganache -q --networkId=1337"
+  },
+  "author": "@nicca42",
+  "license": "MIT"
+}
