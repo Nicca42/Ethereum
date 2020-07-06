@@ -1,0 +1,13 @@
+{
+  "name": "node_try",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "start": "nodemon index.js"
+  },
+  "dependencies": {
+    "ipfs": "^0.47.0",
+    "nodemon": "^1.19.1"
+  }
+}

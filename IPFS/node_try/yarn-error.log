@@ -1,0 +1,36 @@
+Arguments: 
+  /Users/veronicac/.nvm/versions/node/v12.14.0/bin/node /usr/local/bin/yarn add ipfs
+
+PATH: 
+  /Users/veronicac/.nvm/versions/node/v12.14.0/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin
+
+Yarn version: 
+  1.19.1
+
+Node version: 
+  12.14.0
+
+Platform: 
+  darwin x64
+
+Trace: 
+  SyntaxError: /Users/veronicac/Desktop/projects/Ethereum/IPFS/node_try/package.json: Unexpected token } in JSON at position 88
+      at JSON.parse (<anonymous>)
+      at /usr/local/lib/node_modules/yarn/lib/cli.js:1625:59
+      at Generator.next (<anonymous>)
+      at step (/usr/local/lib/node_modules/yarn/lib/cli.js:304:30)
+      at /usr/local/lib/node_modules/yarn/lib/cli.js:315:13
+
+npm manifest: 
+  {
+    "name": "node_try",
+    "version": "1.0.0",
+    "main": "index.js",
+    "license": "MIT",
+  }
+
+yarn manifest: 
+  No manifest
+
+Lockfile: 
+  No lockfile
