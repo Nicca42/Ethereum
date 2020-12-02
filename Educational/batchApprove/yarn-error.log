@@ -1,0 +1,63 @@
+Arguments: 
+  /Users/veronicac/.nvm/versions/node/v10.21.0/bin/node /usr/local/bin/yarn
+
+PATH: 
+  /Users/veronicac/.nvm/versions/node/v10.21.0/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin
+
+Yarn version: 
+  1.19.1
+
+Node version: 
+  10.21.0
+
+Platform: 
+  darwin x64
+
+Trace: 
+  SyntaxError: /Users/veronicac/Desktop/projects/Ethereum/Educational/batchApprove/package.json: Unexpected token } in JSON at position 402
+      at JSON.parse (<anonymous>)
+      at /usr/local/lib/node_modules/yarn/lib/cli.js:1625:59
+      at Generator.next (<anonymous>)
+      at step (/usr/local/lib/node_modules/yarn/lib/cli.js:304:30)
+      at /usr/local/lib/node_modules/yarn/lib/cli.js:315:13
+
+npm manifest: 
+  {
+    "name": "batchApprove",
+    "version": "1.0.0",
+    "main": "index.js",
+    "license": "MIT",
+    "private": false,
+    
+    "devDependencies": {
+      "@typechain/ethers-v4": "^1.0.0",
+      "bignumber.js": "9.0.0",
+      "dotenv": "8.0.0",
+      "etherlime": "2.3.3",
+      "etherlime-lib": "^1.2.3",
+      "ethers": "4.0.47",
+      "openzeppelin-solidity": "3.0.1",
+      "remixd": "0.1.8-alpha.16",
+      "solc": "0.6.6",
+    },
+    "scripts": {
+      "build": "etherlime compile --runs=100 --exportAbi && yarn generate-typings",
+      "test": "etherlime test --output=none --timeout 100000 --gas-report=true",
+      "testone": "etherlime test ./test/Curve.test.js --output=none --timeout 100000 --gas-report=true",
+      "start": "etherlime ganache -q --networkId=1337 --gasLimit=9000000",
+      "remixd": "remixd -s ./contracts --remix-ide https://remix.ethereum.org",
+      "flat": "etherlime flatten BondingCurveFactory.sol",
+      "cover": "etherlime coverage --runs=100 --solcVersion=0.6.6 --timeout=100000",
+      "deploy:local": "etherlime deploy --network=local --runs=500",
+      "deploy:sokol": "etherlime deploy --network=sokol --runs=500",
+      "deploy:poa": "etherlime deploy --network=poa --runs=500",
+      "generate-typings": "typechain --target=ethers-v4 --outDir contractInterfaces/ \"build/*.json\""
+    },
+    "author": "@veronicaLC"
+  }
+
+yarn manifest: 
+  No manifest
+
+Lockfile: 
+  No lockfile
